@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+import store from './store';
+import Header from '../src/components/Header';
+import Router from '../src/components/Router';
+// import Footer from '../src/components/footer';
+
+import './styles/styleRoot.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Header />
+          <Router />
+          {/* <Footer /> */}
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   );
-}
+};
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#560079',
+      main: '#560079',
+      dark: '#560079',
+      contrastText: '#ffffff',
+    },
+    secondary: {
+      light: '#fffebe',
+      main: '#fffebe',
+      dark: '#fffebe',
+      contrastText: '#ffffff',
+    },
+  },
+});
 
 export default App;
